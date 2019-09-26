@@ -5,16 +5,19 @@
  */
 
 module.exports = {
-  siteMetaData: {
-    title: "Samuel Blog Title",
-    description: "Samuel Blog Description"
+  siteMetadata: {
+    title: `Blog Samuel Gomez`,
+    siteUrl: `https://www.samuelgomez.fr`,
+    description: `Blazing fast modern site generator for React`,
   },
   plugins: [
     `gatsby-transformer-remark`,
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      name: `page`,
-      path: `${__dirname}/src/pages`
-    }
-  ]
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `page`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
+  ],
 }
