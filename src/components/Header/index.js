@@ -1,13 +1,24 @@
 import React from "react"
+import { get } from "lodash"
+import { graphql, useStaticQuery } from "gatsby"
+import Header from "./Header"
 
-const Header = ({ metas: { title, description, siteUrl } }) => (
-  <>
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <a href={siteUrl} title={title}>
-      Link to website
-    </a>
-  </>
-)
+export const queryMetaData = graphql`
+  query HeaderQuery {
+    site {
+      siteMetadata {
+        description
+        siteUrl
+        title
+      }
+    }
+  }
+`
 
-export default Header
+const HeaderEnhanced = props => {
+  const data = useStaticQuery(queryMetaData)
+  const metas = get(data, "site.siteMetadata", {})
+  return <Header {...props} metas={metas} />
+}
+
+export default HeaderEnhanced
