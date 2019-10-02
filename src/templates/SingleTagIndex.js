@@ -1,11 +1,11 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { Link } from "gatsby"
 
 const SingleTagTemplate = ({ pageContext }) => {
   const { posts, tagName } = pageContext
   return (
     <>
-      <h1>{tagName}</h1>
+      <h1>Posts about : {tagName}</h1>
       <ul>
         {posts &&
           posts.map(post => (

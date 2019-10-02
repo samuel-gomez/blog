@@ -1,18 +1,6 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import Tags from "../components/Tags"
 
-const AllTagsTemplate = ({ pageContext }) => {
-  const { tags } = pageContext
-  return (
-    <ul>
-      {tags &&
-        tags.map(tag => (
-          <li key={tag}>
-            <Link to={`/tags/${tag}`}>{tag}</Link>
-          </li>
-        ))}
-    </ul>
-  )
-}
+const AllTagsTemplate = ({ pageContext: { tags } }) => <Tags tags={tags} />
 
 export default AllTagsTemplate

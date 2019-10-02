@@ -1,13 +1,15 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Tags from "../components/Tags"
 
 const Template = ({ data, pageContext }) => {
-  const { title } = data.markdownRemark.frontmatter
+  const { title, tags } = data.markdownRemark.frontmatter
   const html = data.markdownRemark.html
   const { next, prev } = pageContext
   return (
     <div>
       <h1>{title}</h1>
+      <Tags tags={tags} />
       <div dangerouslySetInnerHTML={{ __html: html }} />
       {prev && <Link to={prev.frontmatter.path}>Prev</Link>}
       {next && <Link to={next.frontmatter.path}>Next</Link>}
@@ -21,6 +23,7 @@ export const query = graphql`
       html
       frontmatter {
         title
+        tags
       }
     }
   }
