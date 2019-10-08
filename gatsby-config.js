@@ -19,5 +19,12 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
+    {
+      resolve: "gatsby-source-pixabay",
+      options: {
+        key: "13413439-f2e77375a5e4bfc5e4076a13c",
+        q: "yellow flowers",
+      },
+    },
   ],
 }
