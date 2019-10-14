@@ -2,11 +2,12 @@ import React from "react"
 
 const Header = ({ metas: { title, description, siteUrl } }) => (
   <>
-    <h1>{title}</h1>
+    <h1>
+      <a href={siteUrl} title={title}>
+        {title}
+      </a>
+    </h1>
     <p>{description}</p>
-    <a href={siteUrl} title={title}>
-      Link to website
-    </a>
   </>
 )
 
