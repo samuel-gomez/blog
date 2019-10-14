@@ -26,5 +26,11 @@ module.exports = {
         q: "yellow flowers",
       },
     },
+    {
+      resolve: "gatsby-source-contract",
+      options: {
+        apiKey: "uL19TxbOTqdHcHTPd1AgQbR-FjqEDqWK",
+      },
+    },
   ],
 }
