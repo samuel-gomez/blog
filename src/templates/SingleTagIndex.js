@@ -8,9 +8,9 @@ const SingleTagTemplate = ({ pageContext }) => {
       <h1>Posts about : {tagName}</h1>
       <ul>
         {posts &&
-          posts.map(post => (
-            <li key={post.title}>
-              <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
+          posts.map(({ frontmatter: { path, title, lang } }) => (
+            <li key={title}>
+              <Link to={`${lang}${path}`}>{title}</Link>
             </li>
           ))}
       </ul>

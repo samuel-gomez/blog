@@ -13,6 +13,7 @@ export const queryPosts = graphql`
           path
           date
           excerpt
+          lang
         }
       }
     }
@@ -20,8 +21,11 @@ export const queryPosts = graphql`
 `
 
 const PostsEnhanced = props => {
+  const { lang } = props
   const data = useStaticQuery(queryPosts)
-  const posts = get(data, "allMarkdownRemark.nodes", [])
+  const posts = get(data, "allMarkdownRemark.nodes", []).filter(
+    ({ frontmatter }) => frontmatter.lang === lang
+  )
   return <Posts {...props} posts={posts} />
 }
 

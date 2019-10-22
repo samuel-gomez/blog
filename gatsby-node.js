@@ -1,20 +1,24 @@
 const path = require("path")
 
-const createTagPage = (createPage, posts) => {
+exports.DEFAULT_LANGUAGE = "fr"
+
+const createTagPage = (createPage, postsByLang) => {
   const AllTagsIndexTemplate = path.resolve("src/templates/AllTagsIndex.js")
   const SingleTagIndexTemplate = path.resolve("src/templates/SingleTagIndex.js")
   const postByTags = {}
 
-  posts.forEach(({ node }) => {
-    const { frontmatter } = node
-    if (frontmatter.tags) {
-      frontmatter.tags.forEach(tag => {
-        if (!postByTags[tag]) {
-          postByTags[tag] = []
-        }
-        postByTags[tag].push(node)
-      })
-    }
+  postsByLang.forEach(({ edges }) => {
+    edges.forEach(({ node }, index) => {
+      const { frontmatter } = node
+      if (frontmatter.tags) {
+        frontmatter.tags.forEach(tag => {
+          if (!postByTags[tag]) {
+            postByTags[tag] = []
+          }
+          postByTags[tag].push(node)
+        })
+      }
+    })
   })
 
   const tags = Object.keys(postByTags)
@@ -49,12 +53,18 @@ exports.createPages = ({ graphql, actions }) => {
             allMarkdownRemark(
               sort: { order: ASC, fields: frontmatter___date }
             ) {
-              edges {
-                node {
-                  frontmatter {
-                    path
-                    title
-                    tags
+              group(field: frontmatter___lang) {
+                edges {
+                  node {
+                    id
+                    frontmatter {
+                      title
+                      tags
+                      path
+                      lang
+                      excerpt
+                      date
+                    }
                   }
                 }
               }
@@ -62,20 +72,23 @@ exports.createPages = ({ graphql, actions }) => {
           }
         `
       ).then(result => {
-        const posts = result.data.allMarkdownRemark.edges
+        const postsByLang = result.data.allMarkdownRemark.group
+        createTagPage(createPage, postsByLang)
 
-        createTagPage(createPage, posts)
+        postsByLang.forEach(({ edges }) => {
+          edges.forEach(({ node }, index) => {
+            const { lang, path } = node.frontmatter
 
-        posts.forEach(({ node }, index) => {
-          const path = node.frontmatter.path
-          createPage({
-            path,
-            component: blogPostTemplate,
-            context: {
-              pathSlug: path,
-              prev: index === 0 ? null : posts[index - 1].node,
-              next: index === posts.length - 1 ? null : posts[index + 1].node,
-            },
+            createPage({
+              path: `${lang}${path}`,
+              component: blogPostTemplate,
+              context: {
+                pathSlug: path,
+                lang,
+                prev: index === 0 ? null : edges[index - 1].node,
+                next: index === edges.length - 1 ? null : edges[index + 1].node,
+              },
+            })
           })
 
           resolve()

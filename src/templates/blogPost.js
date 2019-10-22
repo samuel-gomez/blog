@@ -3,16 +3,17 @@ import { graphql, Link } from "gatsby"
 import Tags from "../components/Tags"
 
 const Template = ({ data, pageContext }) => {
+  console.log(pageContext, data)
   const { title, tags } = data.markdownRemark.frontmatter
   const html = data.markdownRemark.html
-  const { next, prev } = pageContext
+  const { next, prev, lang } = pageContext
   return (
     <div>
       <h1>{title}</h1>
       <Tags tags={tags} />
       <div dangerouslySetInnerHTML={{ __html: html }} />
-      {prev && <Link to={prev.frontmatter.path}>Prev</Link>}
-      {next && <Link to={next.frontmatter.path}>Next</Link>}
+      {prev && <Link to={`${lang}${prev.frontmatter.path}`}>Prev</Link>}
+      {next && <Link to={`${lang}${next.frontmatter.path}`}>Next</Link>}
     </div>
   )
 }
@@ -24,6 +25,7 @@ export const query = graphql`
       frontmatter {
         title
         tags
+        lang
       }
     }
   }

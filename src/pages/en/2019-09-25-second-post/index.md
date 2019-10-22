@@ -1,4 +1,5 @@
 ---
+lang: "en"
 path: "/second-post"
 date: "2019-09-25"
 title: "My second post"
