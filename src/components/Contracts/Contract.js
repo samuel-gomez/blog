@@ -1,9 +1,11 @@
 import React from "react"
 
-const Contract = ({ firstname, lastName }) => (
+const Contract = ({ firstname, lastname }) => (
   <article>
-    <h1>{firstname}</h1>
-    <h2>{lastName}</h2>
+    <h1>
+      {firstname}
+      {lastname}
+    </h1>
   </article>
 )
 

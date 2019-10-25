@@ -1,16 +1,14 @@
-import React, { useState } from "react"
+import React from "react"
 import Header from "../components/Header"
-import Posts from "../components/Posts"
-import { DEFAULT_LANGUAGE } from "../../gatsby-node"
+import Repos from "../components/Repos"
 
-const Layout = props => {
-  const [stateLang, setStateLang] = useState(DEFAULT_LANGUAGE)
+const Index = () => {
   return (
     <>
-      <Header setStateLang={setStateLang} />
-      <Posts lang={stateLang} />
+      <Header />
+      <Repos />
     </>
   )
 }
 
-export default Layout
+export default Index

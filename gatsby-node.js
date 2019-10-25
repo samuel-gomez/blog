@@ -1,7 +1,5 @@
 const path = require("path")
 
-exports.DEFAULT_LANGUAGE = "fr"
-
 const createTagPage = (createPage, postsByLang) => {
   const AllTagsIndexTemplate = path.resolve("src/templates/AllTagsIndex.js")
   const SingleTagIndexTemplate = path.resolve("src/templates/SingleTagIndex.js")
@@ -62,16 +60,20 @@ exports.createPages = ({ graphql, actions }) => {
                       tags
                       path
                       lang
-                      excerpt
-                      date
                     }
                   }
                 }
               }
             }
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
           }
         `
       ).then(result => {
+        const siteUrl = result.data.site.siteMetadata.siteUrl
         const postsByLang = result.data.allMarkdownRemark.group
         createTagPage(createPage, postsByLang)
 
@@ -85,6 +87,7 @@ exports.createPages = ({ graphql, actions }) => {
               context: {
                 pathSlug: path,
                 lang,
+                siteUrl,
                 prev: index === 0 ? null : edges[index - 1].node,
                 next: index === edges.length - 1 ? null : edges[index + 1].node,
               },
