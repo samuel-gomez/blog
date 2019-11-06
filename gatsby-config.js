@@ -6,13 +6,14 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Blog Samuel Gomez`,
+    title: `Blog AxaGuildDev`,
     siteUrl: `https://www.samuelgomez.fr`,
     description: `Blazing fast modern site generator for React`,
   },
   plugins: [
     `gatsby-transformer-remark`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -1,0 +1,12 @@
+@import '../../../node_modules/knacss/css/knacss.css';
+@import '../../../node_modules/knacss/css/grillade-grid.css';
+
+.af{  
+  &-repo{
+    padding: 1rem;
+    background: #edf;
+    &__title{
+      font-size: 2rem;
+    }
+  }
+}

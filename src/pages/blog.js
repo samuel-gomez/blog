@@ -1,16 +1,13 @@
-import React, { useState } from "react"
-import Header from "../components/Header"
+import React from "react"
+import Layout from "../templates/Layout"
 import Posts from "../components/Posts"
-import { DEFAULT_LANGUAGE } from "../components/constants"
 
-const Layout = props => {
-  const [stateLang, setStateLang] = useState(DEFAULT_LANGUAGE)
+const Blog = props => {
   return (
-    <>
-      <Header setStateLang={setStateLang} />
-      <Posts lang={stateLang} />
-    </>
+    <Layout>
+      <Posts />
+    </Layout>
   )
 }
 
-export default Layout
+export default Blog

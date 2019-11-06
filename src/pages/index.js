@@ -1,13 +1,12 @@
 import React from "react"
-import Header from "../components/Header"
+import Layout from "../templates/Layout"
 import Repos from "../components/Repos"
 
 const Index = () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <Repos />
-    </>
+    </Layout>
   )
 }
 

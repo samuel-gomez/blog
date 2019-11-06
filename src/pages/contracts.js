@@ -1,14 +1,13 @@
 import React from "react"
-import Header from "../components/Header"
+import Layout from "../templates/Layout"
 import Contracts from "../components/Contracts"
 
-const Layout = props => {
+const ContractsPage = props => {
   return (
-    <>
-      <Header />
+    <Layout>
       <Contracts />
-    </>
+    </Layout>
   )
 }
 
-export default Layout
+export default ContractsPage
