@@ -1,0 +1,5 @@
+@import "../../templates/_mixins.scss";
+
+.af-header {
+  @include container;
+}

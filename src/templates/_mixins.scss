@@ -1,0 +1,15 @@
+:root {
+  --tiny: 480px;
+  --small: 576px;
+  --medium: 768px;
+  --large: 992px;
+  --extra-large: 1440px;
+  --color-gold: #ffcb00;
+  --color-grey-01: #f5f7fa;
+}
+
+@mixin container {
+  max-width: var(--extra-large);
+  margin-right: auto;
+  margin-left: auto;
+}

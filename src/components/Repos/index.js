@@ -5,7 +5,7 @@ import Repos from "./Repos"
 
 export const queryRepos = graphql`
   query ReposQuery {
-    allGithubRepo {
+    allGithubRepo(sort: { order: DESC, fields: stargazers_count }) {
       nodes {
         id
         name
