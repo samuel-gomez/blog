@@ -1,4 +1,5 @@
 const path = require("path")
+const { isEmpty } = require("lodash")
 
 const createTagPage = (createPage, postsByLang) => {
   const AllTagsIndexTemplate = path.resolve("src/templates/AllTagsIndex.js")
@@ -60,6 +61,7 @@ exports.createPages = ({ graphql, actions }) => {
                       tags
                       path
                       lang
+                      modifier
                     }
                   }
                 }
@@ -70,26 +72,55 @@ exports.createPages = ({ graphql, actions }) => {
                 siteUrl
               }
             }
+            allGithubRepo {
+              nodes {
+                id
+                name
+                description
+                url
+                stargazers_count
+              }
+            }
           }
         `
       ).then(result => {
-        const siteUrl = result.data.site.siteMetadata.siteUrl
-        const postsByLang = result.data.allMarkdownRemark.group
+        const { allMarkdownRemark, allGithubRepo, site } = result.data
+        const siteUrl = site.siteMetadata.siteUrl
+        const postsByLang = allMarkdownRemark.group
         createTagPage(createPage, postsByLang)
+
+        /*  console.log(
+          "result",
+          allGithubRepo.nodes
+            .filter(repo => repo.name === "react-toolkit")
+            .shift()
+        ) */
 
         postsByLang.forEach(({ edges }) => {
           edges.forEach(({ node }, index) => {
-            const { lang, path } = node.frontmatter
+            const { lang, path, modifier } = node.frontmatter
+
+            const filtreName = repo => {
+              const pathName = `/${repo.name}`
+              return pathName === path
+            }
+
+            const repoInfo = allGithubRepo.nodes.filter(filtreName)
+
+            console.log("repoInfo", repoInfo)
 
             createPage({
               path: `${lang}${path}`,
               component: blogPostTemplate,
+              classModifier: modifier,
               context: {
+                classModifier: modifier,
                 pathSlug: path,
                 lang,
                 siteUrl,
                 prev: index === 0 ? null : edges[index - 1].node,
                 next: index === edges.length - 1 ? null : edges[index + 1].node,
+                repoInfo: !isEmpty(repoInfo) ? repoInfo.shift() : repoInfo,
               },
             })
           })

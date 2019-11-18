@@ -2,7 +2,7 @@ import React from "react"
 import Layout from "../templates/Layout"
 import Posts from "../components/Posts"
 
-const Blog = props => {
+const Blog = () => {
   return (
     <Layout>
       <Posts />

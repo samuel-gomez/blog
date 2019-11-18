@@ -1,9 +1,10 @@
 import React from "react"
 import Repo from "./Repo"
 
-const Repos = ({ repos }) => (
-  <section className="grid-4-small-3 has-gutter af-repos">
-    {repos && repos.map(({ id, ...rest }) => <Repo key={id} {...rest} />)}
+const Repos = ({ repos, lang }) => (
+  <section className="grid-3-small-2 has-gutter af-repos">
+    {repos &&
+      repos.map(({ id, ...rest }) => <Repo key={id} {...rest} lang={lang} />)}
   </section>
 )
 

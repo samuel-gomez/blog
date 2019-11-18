@@ -1,5 +1,38 @@
-@import "../../templates/_mixins.scss";
+@import "../../templates/variables";
 
-.af-header {
-  @include container;
+.#{$prefix} {
+  &-header {
+    top: 0;
+    position: sticky;
+    background: white;
+    box-shadow: 0 0 5px 5px rgba(200, 200, 200, 0.2);
+    &__link {
+      display: flex;
+      text-decoration: none;
+    }
+    &__logo {
+      width: 50px;
+      height: 50px;
+    }
+    &__title {
+      font-size: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0 0 0 1rem;
+      justify-content: center;
+      &-main {
+        font-weight: 600;
+        line-height: 1.4rem;
+      }
+      &-secondary {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  &-container {
+    &--header {
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+  }
 }

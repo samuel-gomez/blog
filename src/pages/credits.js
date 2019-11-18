@@ -1,8 +1,8 @@
 import React from "react"
-import PropTypes from "prop-types"
+import Layout from "../templates/Layout"
 
 const Credits = () => (
-  <>
+  <Layout>
     <div>
       Icons made by
       <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
@@ -13,9 +13,7 @@ const Credits = () => (
         www.flaticon.com
       </a>
     </div>
-  </>
+  </Layout>
 )
-
-Credits.propTypes = {}
 
 export default Credits

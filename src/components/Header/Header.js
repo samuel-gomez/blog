@@ -1,24 +1,25 @@
 import React from "react"
 import { PREFIX } from "../constants"
+import { Link } from "gatsby"
 import "./header.scss"
+import Menu from "../Menu/Menu"
+import Container from "../../templates/Container"
+import LogoIcon from "../../../static/logo-guildevopen.svg"
 
-const Header = ({ metas: { title, description, siteUrl } }) => (
+const Header = () => (
   <header className={`${PREFIX}-header`}>
-    <h1 className={`${PREFIX}-header__title`}>
-      <a href={siteUrl} title={title}>
-        {title}
-      </a>
-    </h1>
-    <nav className={`${PREFIX}-nav`}>
-      <ul className={`${PREFIX}-nav__list`}>
-        <li className={`${PREFIX}-nav__item`}>
-          <a className={`${PREFIX}-nav__link`} href="#/" title="Open Source">
+    <Container classModifier="header">
+      <Link className={`${PREFIX}-header__link`} to="/">
+        <LogoIcon className={`${PREFIX}-header__logo`} />
+        <h1 className={`${PREFIX}-header__title`}>
+          <span className={`${PREFIX}-header__title-main`}>GuilDevOpen</span>
+          <span className={`${PREFIX}-header__title-secondary`}>
             Open Source
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <p>{description}</p>
+          </span>
+        </h1>
+      </Link>
+      <Menu />
+    </Container>
   </header>
 )
 

@@ -4,7 +4,7 @@ import { PREFIX } from "../constants"
 import StarIcon from "../../../static/star.svg"
 import "./repo.scss"
 
-const Repo = ({ name, description, stargazers_count, url, lang, path }) => (
+const Repo = ({ name, description, stargazers_count, url, lang }) => (
   <article className={`${PREFIX}-repo`}>
     <img
       className={`${PREFIX}-repo__avatar`}
@@ -21,7 +21,7 @@ const Repo = ({ name, description, stargazers_count, url, lang, path }) => (
       <a className={`${PREFIX}-repo__github`} href={url} target="blank">
         Voir sur Github
       </a>
-      <Link className={`${PREFIX}-repo__details`} to={`${lang}${path}`}>
+      <Link className={`${PREFIX}-repo__details`} to={`${lang}/${name}`}>
         Voir détail
       </Link>
     </div>

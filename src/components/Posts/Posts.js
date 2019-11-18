@@ -1,10 +1,13 @@
 import React from "react"
 import Post from "./Post"
+import { PREFIX } from "../constants"
 
 const Posts = ({ posts }) => (
-  <section>
+  <section className={`${PREFIX}-posts`}>
     {posts &&
-      posts.map(({ id, frontmatter }) => <Post key={id} {...frontmatter} />)}
+      posts.map(({ id, frontmatter: { modifier, ...restFrontmatter } }) => (
+        <Post key={id} {...restFrontmatter} classModifier={modifier} />
+      ))}
   </section>
 )
 

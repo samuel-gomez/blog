@@ -1,8 +1,7 @@
-@import "../../templates/_mixins.scss";
+@import "../../templates/variables";
 
 .has-gutter.af-repos {
-  @include container;
-  grid-gap: 3rem;
+  grid-gap: 2rem;
 }
 .af {
   &-repo {
@@ -41,7 +40,7 @@
       font-weight: 700;
     }
     &__star-icon {
-      fill: var(--color-gold);
+      fill: $color-gold;
       width: 20px;
       height: 20px;
       margin-right: 1rem;

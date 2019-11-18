@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import { get } from "lodash"
 import { graphql, useStaticQuery } from "gatsby"
+import { Context } from "../../templates/Context"
 import Repos from "./Repos"
 
 export const queryRepos = graphql`
@@ -17,10 +18,11 @@ export const queryRepos = graphql`
   }
 `
 
-const ReposEnhanced = props => {
+const ReposEnhanced = () => {
+  const { stateLang } = useContext(Context)
   const data = useStaticQuery(queryRepos)
   const repos = get(data, "allGithubRepo.nodes", [])
-  return <Repos {...props} repos={repos} />
+  return <Repos repos={repos} lang={stateLang} />
 }
 
 export default ReposEnhanced

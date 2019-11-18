@@ -1,0 +1,26 @@
+@import "../../templates/variables";
+
+.#{$prefix} {
+  &-nav {
+    &__list {
+      margin: 0;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      font-size: 1.4rem;
+    }
+    &__item {
+      margin-left: 2rem;
+    }
+    &__link {
+      text-decoration: none;
+      &:hover,
+      &:focus {
+        color: $color-blue-light;
+      }
+      &--active {
+        color: $color-blue-light;
+      }
+    }
+  }
+}

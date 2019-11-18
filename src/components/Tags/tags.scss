@@ -1,0 +1,26 @@
+@import "../../templates/variables";
+
+.#{$prefix} {
+  &-tags {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  &-tag {
+    margin-right: 1rem;
+    &__link {
+      background: $color-blue-dark;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      &:hover,
+      &:focus {
+        color: $color-blue-light;
+      }
+    }
+  }
+}
