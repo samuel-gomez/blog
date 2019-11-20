@@ -2,21 +2,24 @@ import React from "react"
 import { Link } from "gatsby"
 import withClassModifier from "../../utils/withClassModifier"
 import { PREFIX } from "../constants"
+import "./post.scss"
+const DEFAULT_CLASSNAME = `${PREFIX}-posts-item`
 
-const Post = props => {
-  const { title, excerpt, path, lang, className } = props
-
-  return (
+const Post = ({ title, excerpt, path, lang, className }) => (
+  <Link to={`${lang}${path}`}>
     <article className={className}>
-      <h1>
-        <Link to={`${lang}${path}`}>{title}</Link>
-      </h1>
-      <p>{excerpt}</p>
+      <img
+        className={`${DEFAULT_CLASSNAME}__avatar`}
+        src="https://picsum.photos/300/200"
+        alt={title}
+      />
+      <h2 className={`${DEFAULT_CLASSNAME}__title`}>{title}</h2>
+      <p className={`${DEFAULT_CLASSNAME}__description`}>{excerpt}</p>
     </article>
-  )
-}
+  </Link>
+)
 
-const EnhancedPost = withClassModifier(`${PREFIX}-posts__item`)(Post)
+const EnhancedPost = withClassModifier(DEFAULT_CLASSNAME)(Post)
 EnhancedPost.displayName = "Post"
 
 export default EnhancedPost

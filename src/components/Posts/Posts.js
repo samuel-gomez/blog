@@ -3,7 +3,7 @@ import Post from "./Post"
 import { PREFIX } from "../constants"
 
 const Posts = ({ posts }) => (
-  <section className={`${PREFIX}-posts`}>
+  <section className={`grid-3-small-2 has-gutter ${PREFIX}-posts`}>
     {posts &&
       posts.map(({ id, frontmatter: { modifier, ...restFrontmatter } }) => (
         <Post key={id} {...restFrontmatter} classModifier={modifier} />

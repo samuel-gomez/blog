@@ -11,7 +11,7 @@ body {
 
 .#{$prefix} {
   &-container {
-    max-width: $large;
+    max-width: $extra-large;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;

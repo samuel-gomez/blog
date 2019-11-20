@@ -89,13 +89,6 @@ exports.createPages = ({ graphql, actions }) => {
         const postsByLang = allMarkdownRemark.group
         createTagPage(createPage, postsByLang)
 
-        /*  console.log(
-          "result",
-          allGithubRepo.nodes
-            .filter(repo => repo.name === "react-toolkit")
-            .shift()
-        ) */
-
         postsByLang.forEach(({ edges }) => {
           edges.forEach(({ node }, index) => {
             const { lang, path, modifier } = node.frontmatter
@@ -106,8 +99,6 @@ exports.createPages = ({ graphql, actions }) => {
             }
 
             const repoInfo = allGithubRepo.nodes.filter(filtreName)
-
-            console.log("repoInfo", repoInfo)
 
             createPage({
               path: `${lang}${path}`,
