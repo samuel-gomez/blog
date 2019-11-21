@@ -6,7 +6,7 @@ import StarIcon from "../../../static/star.svg"
 import "./repo.scss"
 import { isNull } from "lodash"
 
-const Repo = ({ name, description = "", stargazers_count, url, lang }) => (
+const Repo = ({ name, description, stargazers_count, url, lang, title }) => (
   <article className={`${PREFIX}-repo`}>
     <img
       className={`${PREFIX}-repo__avatar`}
@@ -14,21 +14,24 @@ const Repo = ({ name, description = "", stargazers_count, url, lang }) => (
       alt={name}
     />
     <div className={`${PREFIX}-repo__content`}>
-      <h2 className={`${PREFIX}-repo__title`}>{name}</h2>
-      <p className={`${PREFIX}-repo__description`}>
-        {!isNull(description)
-          ? `${description.substring(0, 100)} ...`
-          : "No description"}
-      </p>
+      <h2 className={`${PREFIX}-repo__title`}>{title}</h2>
+      <p className={`${PREFIX}-repo__description`}>{description}</p>
       <span className={`${PREFIX}-repo__stars`}>
         <StarIcon className={`${PREFIX}-repo__star-icon`} />
         {stargazers_count}
       </span>
       <div className={`${PREFIX}-repo__links`}>
-        <a className={`${PREFIX}-repo__github`} href={url} target="blank">
+        <a
+          className={`${PREFIX}-repo__link ${PREFIX}-repo__link--github`}
+          href={url}
+          target="blank"
+        >
           Voir sur Github
         </a>
-        <Link className={`${PREFIX}-repo__details`} to={`${lang}/${name}`}>
+        <Link
+          className={`${PREFIX}-repo__link ${PREFIX}-repo__link--details`}
+          to={`${lang}/${name}`}
+        >
           Voir détail
         </Link>
       </div>
@@ -36,7 +39,37 @@ const Repo = ({ name, description = "", stargazers_count, url, lang }) => (
   </article>
 )
 
-Repo.propTypes = {
+const setCropDescription = ({ description, maxLength = 100 }) => {
+  if (isNull(description)) {
+    return "No description"
+  }
+
+  const isCropable = !isNull(description) && description.length > maxLength
+  const isNotCropable = !isNull(description) && description.length <= maxLength
+
+  return {
+    [isCropable]: `${description.substring(0, maxLength)} ...`,
+    [isNotCropable]: description,
+  }[true]
+}
+const setCleanName = ({ name }) => {
+  if (isNull(name)) {
+    return "No name"
+  }
+  return name.replace(/-/gi, " ")
+}
+
+const RepoEnhanced = props => {
+  const { description, name } = props
+
+  const cleanedName = setCleanName({ name })
+  const croppedDescription = setCropDescription({ description })
+  return (
+    <Repo {...props} description={croppedDescription} title={cleanedName} />
+  )
+}
+
+RepoEnhanced.propTypes = {
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
@@ -44,9 +77,9 @@ Repo.propTypes = {
   stargazers_count: PropTypes.number,
 }
 
-Repo.defaultProps = {
+RepoEnhanced.defaultProps = {
   description: "No description",
   stargazers_count: 0,
 }
 
-export default Repo
+export default RepoEnhanced
