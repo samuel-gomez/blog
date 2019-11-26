@@ -1,17 +1,41 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "./Layout"
 import Tags from "../components/Tags"
 import Meta from "../components/Meta"
 import withClassModifier from "../utils/withClassModifier"
 import { PREFIX } from "../components/constants"
+import StarIcon from "../../static/star.svg"
+import "./blogPost.scss"
 
-const Article = ({ className, title, tags, next, prev, html, lang, stars }) => (
+const Article = ({
+  className,
+  title,
+  tags,
+  next,
+  prev,
+  html,
+  lang,
+  stars,
+  name,
+}) => (
   <article className={className}>
-    <h1 className={`${PREFIX}-post__title`}>{title}</h1>
-    {stars && <h2>{stars}</h2>}
-    <Tags tags={tags} />
-    <div dangerouslySetInnerHTML={{ __html: html }} />
+    <header className={`${PREFIX}-post__header`}>
+      <h1 className={`${PREFIX}-post__title`}>{title}</h1>
+      <img
+        className={`${PREFIX}-post__avatar`}
+        src={`../../repos/logo-${name}.svg`}
+        alt={name}
+      />
+      {stars && (
+        <span className={`${PREFIX}-post__stars`}>
+          <StarIcon className={`${PREFIX}-post__star-icon`} />
+          {stars}
+        </span>
+      )}
+      <Tags tags={tags} />
+    </header>
+    <Fragment dangerouslySetInnerHTML={{ __html: html }} />
     {prev && <Link to={`${lang}${prev.frontmatter.path}`}>Prev</Link>}
     {next && <Link to={`${lang}${next.frontmatter.path}`}>Next</Link>}
   </article>
@@ -36,6 +60,7 @@ const TemplatePost = ({ data, pageContext }) => {
         prev={prev}
         lang={lang}
         stars={repoInfo.stargazers_count}
+        name={repoInfo.name}
       />
     </Layout>
   )
