@@ -12,15 +12,15 @@
   &-tag {
     margin-right: 1rem;
     &__link {
-      background: $color-blue-dark;
-      color: white;
+      background: $gray-100;
+      color: $gray-500;
       padding: 0.5rem 1rem;
       border-radius: 30px;
       text-decoration: none;
       font-size: 1.4rem;
       &:hover,
       &:focus {
-        color: $color-blue-light;
+        color: $gray-700;
       }
     }
   }

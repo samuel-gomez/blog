@@ -8,3 +8,5 @@ $color-red-dark: #e62c2e;
 // --- override knacss
 $font-family-base: "Source Sans Pro", sans-serif;
 $font-family-headings: "Source Sans Pro", sans-serif;
+
+@import "../../node_modules/knacss/sass/knacss.scss";

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "./Layout"
 import Tags from "../components/Tags"
@@ -35,7 +35,7 @@ const Article = ({
       )}
       <Tags tags={tags} />
     </header>
-    <Fragment dangerouslySetInnerHTML={{ __html: html }} />
+    <div dangerouslySetInnerHTML={{ __html: html }} />
     {prev && <Link to={`${lang}${prev.frontmatter.path}`}>Prev</Link>}
     {next && <Link to={`${lang}${next.frontmatter.path}`}>Next</Link>}
   </article>
