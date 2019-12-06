@@ -1,10 +1,35 @@
-import React from "react"
+import React, { useCallback, useState } from "react"
 import { Link } from "gatsby"
+import OpenButton from "../../../static/menu.svg"
+import CloseButton from "../../../static/close.svg"
 import { PREFIX } from "../constants"
 import "./menu.scss"
 
-const Menu = () => (
-  <nav className={`${PREFIX}-nav`}>
+const Menu = props => {
+  const [isOpen, setStateMenu] = useState(false)
+
+  const close = useCallback(() => {
+    setStateMenu(false)
+  }, [])
+
+  const open = useCallback(() => {
+    setStateMenu(true)
+  }, [])
+  console.log(isOpen)
+
+  return <MenuView {...props} isOpen={isOpen} close={close} open={open} />
+}
+
+const ToggleButton = ({ close, open, isOpen }) =>
+  isOpen ? <CloseButton onClick={close} /> : <OpenButton onClick={open} />
+
+const MenuView = props => (
+  <nav
+    className={`${PREFIX}-nav${props.isOpen ? ` ${PREFIX}-nav--opened` : ""}`}
+  >
+    <span className={`${PREFIX}-nav__toggle`}>
+      <ToggleButton {...props} />
+    </span>
     <ul className={`${PREFIX}-nav__list`}>
       <li className={`${PREFIX}-nav__item`}>
         <Link

@@ -11,6 +11,9 @@ body {
 }
 
 .#{$prefix} {
+  &-main {
+    background: $gray-100;
+  }
   &-container {
     max-width: $extra-large;
     margin: 0 auto;

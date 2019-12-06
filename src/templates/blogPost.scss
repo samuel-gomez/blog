@@ -116,8 +116,6 @@
         width: 80%;
         margin: 0 auto 4rem auto;
         &--left {
-          grid-row: 1;
-          grid-column: 1;
           box-shadow: 10px 30px 50px 0px rgba(0, 0, 0, 0.5),
             0 -40px 0 30px $color-red-dark;
         }
@@ -138,6 +136,23 @@
       &__title {
         font-size: 3rem;
         margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+@include respond-to("tiny") {
+  .#{$prefix} {
+    &-post {
+      &__section {
+        display: flex;
+        flex-direction: column;
+      }
+      &__img {
+        order: 1;
+      }
+      &__article {
+        order: 2;
       }
     }
   }

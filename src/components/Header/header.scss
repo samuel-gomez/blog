@@ -37,3 +37,11 @@
     }
   }
 }
+
+@include respond-to("extra-large") {
+  .#{$prefix} {
+    &-header {
+      padding: 0 2rem;
+    }
+  }
+}
