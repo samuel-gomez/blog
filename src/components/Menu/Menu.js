@@ -15,7 +15,6 @@ const Menu = props => {
   const open = useCallback(() => {
     setStateMenu(true)
   }, [])
-  console.log(isOpen)
 
   return <MenuView {...props} isOpen={isOpen} close={close} open={open} />
 }
@@ -41,6 +40,16 @@ const MenuView = props => (
         </Link>
       </li>
       <li className={`${PREFIX}-nav__item`}>
+        <a
+          className={`${PREFIX}-nav__link`}
+          href="https://medium.com/just-tech-it-now"
+          title="Blog Just Tech IT"
+          target="blank"
+        >
+          Blog
+        </a>
+      </li>
+      {/*  <li className={`${PREFIX}-nav__item`}>
         <Link
           className={`${PREFIX}-nav__link`}
           to="/blog"
@@ -48,7 +57,7 @@ const MenuView = props => (
         >
           Blog
         </Link>
-      </li>
+      </li> */}
       <li className={`${PREFIX}-nav__item`}>
         <a
           className={`${PREFIX}-nav__link`}

@@ -24,7 +24,11 @@ const apiByType = secretApp => repo => type =>
   `https://api.github.com/repos/AxaGuilDEv/${repo}/${type}?${secretApp}`
 
 const fetchJson = (apiUrl, errorMessage = "fetch failed") =>
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    headers: {
+      Accept: "application/vnd.github.mercy-preview+json",
+    },
+  })
     .then(res => res.json())
     .catch(() => console.log(errorMessage))
 

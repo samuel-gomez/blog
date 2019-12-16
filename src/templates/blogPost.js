@@ -6,6 +6,7 @@ import Meta from "../components/Meta"
 import withClassModifier from "../utils/withClassModifier"
 import { PREFIX } from "../components/constants"
 import StarIcon from "../../static/star.svg"
+import GithubIcon from "../../static/github.svg"
 import "./blogPost.scss"
 
 const Article = ({
@@ -18,10 +19,21 @@ const Article = ({
   lang,
   stars,
   name,
+  url,
 }) => (
   <article className={className}>
     <header className={`${PREFIX}-post__header`}>
       <h1 className={`${PREFIX}-post__title`}>{title}</h1>
+      {url && (
+        <a
+          className={`${PREFIX}-post__github-link`}
+          href={url}
+          title={`Aller au Github de ${title}`}
+          target="blank"
+        >
+          <GithubIcon className={`${PREFIX}-post__github-icon`} />
+        </a>
+      )}
       <img
         className={`${PREFIX}-post__avatar`}
         src={`../../repos/logo-${name}.svg`}
@@ -36,8 +48,24 @@ const Article = ({
       <Tags tags={tags} />
     </header>
     <div dangerouslySetInnerHTML={{ __html: html }} />
-    {prev && <Link to={`${lang}${prev.frontmatter.path}`}>Prev</Link>}
-    {next && <Link to={`${lang}${next.frontmatter.path}`}>Next</Link>}
+    <nav className={`${PREFIX}-footer-nav`}>
+      {prev && (
+        <Link
+          className={`${PREFIX}-footer-nav__link`}
+          to={`${lang}${prev.frontmatter.path}`}
+        >
+          {prev.frontmatter.title}
+        </Link>
+      )}
+      {next && (
+        <Link
+          className={`${PREFIX}-footer-nav__link`}
+          to={`${lang}${next.frontmatter.path}`}
+        >
+          {next.frontmatter.title}
+        </Link>
+      )}
+    </nav>
   </article>
 )
 
@@ -48,6 +76,7 @@ const TemplatePost = ({ data, pageContext }) => {
   const { title, tags, meta, path, modifier } = data.markdownRemark.frontmatter
   const html = data.markdownRemark.html
   const { next, prev, lang, siteUrl, repoInfo } = pageContext
+  console.log(repoInfo)
   return (
     <Layout>
       <Meta {...meta} path={`${siteUrl}/${lang}${path}`} />
@@ -61,6 +90,7 @@ const TemplatePost = ({ data, pageContext }) => {
         lang={lang}
         stars={repoInfo.stargazers_count}
         name={repoInfo.name}
+        url={repoInfo.html_url}
       />
     </Layout>
   )

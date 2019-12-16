@@ -12,6 +12,7 @@ body {
 
 .#{$prefix} {
   &-main {
+    min-height: 100vh;
     background: $gray-100;
   }
   &-container {

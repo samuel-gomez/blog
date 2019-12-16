@@ -13,24 +13,18 @@ meta: {
 ---
 
 <section class="grid-2-small-1 af-post__section">
-  <img class="af-post__img af-post__img--left" src="../../slash-design-system.png" alt="slash-design-system" />
+  <img class="af-post__img af-post__img--left" src="../../password.jpg" alt="react oidc software security" />
   <article class="af-post__article af-post__article--left">
-    <h2 class="af-post__subtitle af-post__subtitle--left">Sécuriser vos applications React</h2>
-    <p class="af-post__content">React OIDC permet de faire de l'authentification sécurisée sur des applications React.</p>
+    <h2 class="af-post__subtitle af-post__subtitle--left">Sécuriser vos applications React avec React OIDC</h2>
+    <p class="af-post__content">React OIDC permet de faire de l'authentification sécurisée sur des applications React. Il utilise la couche d'authentification OpenID Connect basée sur le protocole OAuth 2.0.</p>
   </article>
 </section>
 <section class="grid-2-small-1 af-post__section">
   <article class="af-post__article af-post__article--right">
-    <h2 class="af-post__subtitle af-post__subtitle--right">A qui se destine ce Design System ?</h2>
-    <p class="af-post__content">Ce réferentiel est à destination des développeurs, des UX mais aussi aux autres membres de la famille Produit comme les PO, les PM ainsi que les utilisateurs finaux.</p>
+    <h2 class="af-post__subtitle af-post__subtitle--right">OpenID Connect</h2>
+    <p class="af-post__content">OpenID Connect est une simple couche d'identification basée sur le protocole OAuth 2.0, qui autorise les clients à vérifier l'identité d'un utilisateur final en se basant sur l'authentification fournie par un serveur d'autorisation, en suivant le processus d'obtention d'une simple information du profil de l'utilisateur final. Ce processus est basé sur un dispositif interopérable de type REST. En termes techniques, OpenID Connect spécifie une interface HTTP RESTful, en utilisant JSON comme format de données.
+OpenID Connect permet à un éventail de clients, y compris web, mobiles et JavaScript, de demander et recevoir des informations sur la session authentifiée et l'utilisateur final. Cet ensemble de spécifications est extensible, supporte des fonctionnalités optionnelles telle le chiffrement des données d'identité, la découverte dynamique de fournisseurs OpenID et la gestion de sessions2. </p>
+  <small>Sources : <a href="https://fr.wikipedia.org/wiki/OpenID_Connect" target="blank" >Wikipedia</a></p>
   </article>
-  <img class="af-post__img af-post__img--right" src="../../users-design-system.jpg" alt="users-design-system" />
-</section>
-<section class="grid-2-small-1 af-post__section">
-  <img class="af-post__img af-post__img--left" src="../../computer.jpg" alt="computer" />
-  <article class="af-post__article af-post__article--left">
-    <h2 class="af-post__subtitle af-post__subtitle--left">Quelles technologies sont utilisées ?</h2>
-    <p class="af-post__content">Slash Design System est ensemble de composants indépendants (packages) via un mono-repository . 
-Cela a été possible grâce à <a class="af-post__link af-post__link--external" href="https://lerna.js.org/">Lerna</a> qui permet de développer du multi-packages sur un seul repository.<br/>Le Design System se décompose en 2 parties documentée : HTML/CSS pour le graphisme et Javascript pour l’interaction.<br/>La documentation HTML/CSS est générée par le moteur de templating <a class="af-post__link af-post__link--external" href="https://pugjs.org/">Pug</a>, ainsi que le préprocesseur <a class="af-post__link af-post__link--external" href="https://sass-lang.com/">Sass</a> pour la génération CSS.<br />Pour la partie Javascript, les composants ont été développés avec la librairie <a class="af-post__link af-post__link--external" href="https://reactjs.org/">ReactJS</a>, la documentation est générée à l’aide de l’outil <a class="af-post__link af-post__link--external" href="https://storybook.js.org/">Storybook</a> afin d’avoir une documenation plus interactive.</p>
-  </article>
+  <img class="af-post__img af-post__img--right" src="../../openid.svg" alt="openid connect" />
 </section>

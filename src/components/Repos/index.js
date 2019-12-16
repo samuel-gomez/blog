@@ -6,13 +6,16 @@ import Repos from "./Repos"
 
 export const queryRepos = graphql`
   query ReposQuery {
-    allGithubRepo(sort: { order: DESC, fields: stargazers_count }) {
+    allGithubRepo(
+      sort: { order: DESC, fields: stargazers_count }
+      filter: { topics: { in: "guildevopen" } }
+    ) {
       nodes {
         id
         name
         description
-        url
         stargazers_count
+        html_url
       }
     }
   }

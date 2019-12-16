@@ -6,7 +6,14 @@ import StarIcon from "../../../static/star.svg"
 import "./repo.scss"
 import { isNull } from "lodash"
 
-const Repo = ({ name, description, stargazers_count, url, lang, title }) => (
+const Repo = ({
+  name,
+  description,
+  stargazers_count,
+  html_url,
+  lang,
+  title,
+}) => (
   <article className={`${PREFIX}-repo`}>
     <img
       className={`${PREFIX}-repo__avatar`}
@@ -23,7 +30,7 @@ const Repo = ({ name, description, stargazers_count, url, lang, title }) => (
       <div className={`${PREFIX}-repo__links`}>
         <a
           className={`${PREFIX}-repo__link ${PREFIX}-repo__link--github`}
-          href={url}
+          href={html_url}
           target="blank"
         >
           Voir sur Github
@@ -71,7 +78,7 @@ const RepoEnhanced = props => {
 
 RepoEnhanced.propTypes = {
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  html_url: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
   description: PropTypes.string,
   stargazers_count: PropTypes.number,

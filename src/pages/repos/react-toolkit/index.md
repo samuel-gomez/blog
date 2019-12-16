@@ -13,7 +13,7 @@ meta: {
 ---
 
 <section class="grid-2-small-1 af-post__section">
-  <img class="af-post__img af-post__img--left" src="../../slash-design-system.png" alt="slash-design-system" />
+  <img class="af-post__img af-post__img--left" src="../../slash-design-system.jpg" alt="slash-design-system" />
   <article class="af-post__article af-post__article--left">
     <h2 class="af-post__subtitle af-post__subtitle--left">A quoi sert «Slash Design System» ?</h2>
     <p class="af-post__content">Comme son nom l’indique, il s’agit d’un Design System, cet outil a été développé pour des besoins internes sur l’homogénisation des développpements front-end des applications métiers. Il permet de définir les guidelines UX et les règles de parcours utilisateurs.</p>
