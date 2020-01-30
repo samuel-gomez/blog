@@ -27,7 +27,7 @@ const apiRepoTags = (secretApp, tagsUrl) => `${tagsUrl}?${secretApp}`
 const fetchJson = (apiUrl, errorMessage = "fetch failed") =>
   fetch(apiUrl, {
     headers: {
-      Authorization: `Bearer f574242385318bca52fdc45f5e4b8dd88299f7d0`, // Personal Access Token
+      Authorization: `Bearer 91585c2db39fa83f82f59bbafa482c43428e04de`, // Personal Access Token
       Accept: "application/vnd.github.mercy-preview+json",
     },
   })
