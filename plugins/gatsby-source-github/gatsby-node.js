@@ -20,12 +20,14 @@ const processRepo = (createNodeId, createContentDigest) => repo => {
 const apiRepos = secretApp =>
   `https://api.github.com/users/axaguildev/repos?${secretApp}`
 
-const apiByType = secretApp => repo => type =>
-  `https://api.github.com/repos/AxaGuilDEv/${repo}/${type}?${secretApp}`
+// const apiByType = secretApp => repo => type => `https://api.github.com/repos/AxaGuilDEv/${repo}/${type}?${secretApp}`
+
+const apiRepoTags = (secretApp, tagsUrl) => `${tagsUrl}?${secretApp}`
 
 const fetchJson = (apiUrl, errorMessage = "fetch failed") =>
   fetch(apiUrl, {
     headers: {
+      Authorization: `Bearer f574242385318bca52fdc45f5e4b8dd88299f7d0`, // Personal Access Token
       Accept: "application/vnd.github.mercy-preview+json",
     },
   })
@@ -33,6 +35,21 @@ const fetchJson = (apiUrl, errorMessage = "fetch failed") =>
     .catch(() => console.log(errorMessage))
 
 const getRepos = secretApp => fetchJson(apiRepos(secretApp))
+const getRepoTags = (secretApp, tagsUrl) =>
+  fetchJson(apiRepoTags(secretApp, tagsUrl))
+
+const getReposWithTags = async apiOptions => {
+  const repos = await getRepos(apiOptions)
+  const newRepos = await Promise.all(
+    repos.map(async repo => {
+      const tagsList = await getRepoTags(apiOptions, repo.tags_url)
+      const tags = tagsList.flatMap(({ name }) => name)
+      const newRepo = { ...repo, tags }
+      return newRepo
+    })
+  )
+  return newRepos
+}
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
@@ -42,8 +59,8 @@ exports.sourceNodes = async (
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
   try {
-    const repos = await getRepos(apiOptions)
-    repos.forEach(repo => {
+    const repos = await getReposWithTags(apiOptions)
+    repos.forEach(async repo => {
       const nodeData = processRepo(createNodeId, createContentDigest)(repo)
       createNode(nodeData)
     })

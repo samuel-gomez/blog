@@ -112,6 +112,7 @@ exports.createPages = ({ graphql, actions }) => {
               stargazers_count
               topics
               html_url
+              tags
             }
           }
         }
